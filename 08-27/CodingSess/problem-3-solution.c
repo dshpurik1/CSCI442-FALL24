@@ -9,7 +9,7 @@
 // Useful system calls:
 //  1. strtol()
 
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
     char *firstNumInvalidChars, *secondNumInvalidChars;    //stores address of invalid characters from strtol() --see `man strtol 3`
     
     long int firstNum = strtol(argv[1], &firstNumInvalidChars, 10);    //convert argv[1] string to int using strtol on base 10

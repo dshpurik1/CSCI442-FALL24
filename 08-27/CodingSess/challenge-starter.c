@@ -4,8 +4,10 @@
 #include <errno.h>
 
 // CHALLENGE: 
-//  If you finish this early, now set it up so that you read the file first and make sure that the user hasn't already asked for a computation.
-//  To do this, open the file, read each line and see if the arguments match that line. If they do, let the user know that the computation is 
+//  If you finish this early, now set it up so that you read the 
+//  file first and make sure that the user hasn't already asked for a computation.
+//  To do this, open the file, read each line and see if the arguments 
+//  match that line. If they do, let the user know that the computation is 
 //  already in the file. If not, then append the new computation to the file.
 
 // Useful tools to use:
