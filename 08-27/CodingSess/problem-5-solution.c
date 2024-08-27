@@ -10,16 +10,18 @@
 //  3. Print userful error messages to stderr if there is a invalid argument and do not write anything to the file
 
 // CHALLENGE: If you finish this early, now set it up so that you read the file first and make sure that the user hasn't already asked for a computation.
-//            To do this, open the file, read all the current lines into a struct that stores each argument (feel free to modify the logging to make this easier)
-//            Make sure to utilize struct{} as well as malloc() for storing each struct on the heap
+//            To do this, open the file, read each line and see if the arguments match that line. If they do, let the user know that the computation is 
+//            already in the file. If not, then append the new computation to the file.
+//            SEE challenge.c FOR ADDITIONAL TOOLS
 
-// Useful tools to use:
+// Useful system calls:
 //  1. fopen()
 //  2. fclose()
+//  3. fprintf()
 
 int main(int argc, char *argv[]) {
     if (argc != 4) {                    
-        fprintf(stderr, "error: invalid amount of arguments; expected 2\n");
+        fprintf(stderr, "error: invalid amount of arguments; expected 3\n");
         return 1;
     }
 
@@ -52,6 +54,8 @@ int main(int argc, char *argv[]) {
     long int sum = firstNum + secondNum;
 
     fprintf(fout, "SUM: %ld + %ld = %ld\n", firstNum, secondNum, sum);
+
+    fclose(fout);
     
     return 0;
 }

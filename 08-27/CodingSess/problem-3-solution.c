@@ -6,6 +6,9 @@
 //  1. Now allow the user to enter the values to add as arguments and print the sum as an integer
 //  2. Assume a smart user
 
+// Useful system calls:
+//  1. strtol()
+
 int main(int argc, char *argv[]) {
     char *firstNumInvalidChars, *secondNumInvalidChars;    //stores address of invalid characters from strtol() --see `man strtol 3`
     

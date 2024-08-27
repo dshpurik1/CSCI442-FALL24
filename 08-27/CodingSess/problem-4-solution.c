@@ -4,21 +4,15 @@
 #include <errno.h>
 
 // Problem Statement:
-//  1. Now allow the user to also specify a file to append the sum of the long integers to
-//    a. Follow the format SUM: var1 + var2 = sum
-//  2. Assume a dumb user (incorrect number of arguments and/or invalid arguments and/or values larger than long (64 bits), invalid file)
-//  3. Print userful error messages to stderr if there is a invalid argument and do not write anything to the file
+//  1. Now allow the user to enter the values to add as arguments and print the sum as an integer
+//  2. Assume a dumb user (incorrect number of arguments and/or invalid arguments and/or values larger than long (64 bits))
+//  3. Print userful error messages to stderr if there is a invalid argument
 
-// CHALLENGE: If you finish this early, now set it up so that you read the file first and make sure that the user hasn't already asked for a computation.
-//            To do this, open the file, read all the current lines into a struct that stores each argument (feel free to modify the logging to make this easier)
-//            Make sure to utilize struct{} as well as malloc() for storing each struct on the heap
-
-// Useful tools to use:
-//  1. fopen()
-//  2. fclose()
+// Useful system calls:
+//  1. fprintf() or perror()
 
 int main(int argc, char *argv[]) {
-    if (argc != 4) {                    
+    if (argc != 3) {                    
         fprintf(stderr, "error: invalid amount of arguments; expected 2\n");
         return 1;
     }
@@ -43,15 +37,9 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    FILE *fout = fopen(argv[3], "a");
-    if (fout == NULL) {
-        fprintf(stderr, "error: cannot open file '%s'\n", argv[2]);
-		return 1;
-    }
-
     long int sum = firstNum + secondNum;
 
-    fprintf(fout, "SUM: %ld + %ld = %ld\n", firstNum, secondNum, sum);
+    printf("%ld + %ld = %ld\n", firstNum, secondNum, sum);
     
     return 0;
 }

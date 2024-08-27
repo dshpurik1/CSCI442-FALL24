@@ -6,7 +6,7 @@ int main() {
 
     printf("Value of num ..................... %d\n", num);                   // Prints the value of num
     printf("Value of ptr dereferenced ........ %d\n", *ptr);                  // Prints the value at the address refercened by ptr
-    printf("Value of ptr value dereferenced .. %d\n", *&*ptr);                // Prints the value at 
+    printf("Value of ptr value dereferenced .. %d\n", *&*ptr);                // Prints the value at the address refercened by ptr
     
     printf("Address of num ................... %p\n", &num);                  // Prints the address of num
     printf("Value of ptr ..................... %p\n", ptr);                   // Prints the value of ptr 
