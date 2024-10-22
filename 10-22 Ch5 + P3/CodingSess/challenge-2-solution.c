@@ -20,25 +20,31 @@
 // Challenge 2:
 //    1. Modify the previous program to pass a structure containing an integer and a string to each thread. 
 //       The thread should print both values.
-//
-//
-// Challenge 3:
-//    1. Write a program where any number of threads specified increment a shared counter.
-//    2. Synchronization does not matter here.
-//    3. You should convert your program to allow for NUM_THREADS to be created instead of just two.
-//
-//
-// Challenge 4:
-//    1. Modify the previous program so that the shared counter increments correctly.
-//    2. Synchronization DOES matter so use mutexes here.
 
 
-void* print_message(void* arg) {
-    
+struct thread_data{
+    int id;
+    char* message;
+};
+
+
+void* print_data(void* arg) {
+    thread_data* data = (thread_data*)arg;
+    printf("Thread %d: %s\n", data->id, data->message);
     return NULL;
 }
 
-int main(int argc, char *argv[]) {
+
+int main() {
+    pthread_t t1, t2;
+    thread_data td1 = {1, "Hello from Thread 1"};
+    thread_data td2 = {2, "Hello from Thread 2"};
+
+    pthread_create(&t1, NULL, print_data, &td1);
+    pthread_create(&t2, NULL, print_data, &td2);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
 
     return 0;
 }

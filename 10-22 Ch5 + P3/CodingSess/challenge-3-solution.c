@@ -25,20 +25,34 @@
 // Challenge 3:
 //    1. Write a program where any number of threads specified increment a shared counter.
 //    2. Synchronization does not matter here.
-//    3. You should convert your program to allow for NUM_THREADS to be created instead of just two.
-//
-//
-// Challenge 4:
-//    1. Modify the previous program so that the shared counter increments correctly.
-//    2. Synchronization DOES matter so use mutexes here.
+//    3. You should convert your program to allow for NUm_THREADS to be created instead of just two.
 
 
-void* print_message(void* arg) {
-    
+#define NUM_THREADS 10000
+
+int counter = 0;
+
+
+void* increment_counter(void* arg) {
+    sleep(.5); // Forcing race condition (does nothing for mutexes)
+    counter++;
+    printf("Thread %ld incremented counter to %d\n", pthread_self(), counter);
     return NULL;
 }
 
-int main(int argc, char *argv[]) {
+
+int main() {
+    pthread_t threads[NUM_THREADS];
+
+    for (int i = 0; i < NUM_THREADS; i++) {
+        pthread_create(&threads[i], NULL, increment_counter, NULL);
+    }
+
+    for (int i = 0; i < NUM_THREADS; i++) {
+        pthread_join(threads[i], NULL);
+    }
+
+    printf("Final value of counter: %d\n", counter);
 
     return 0;
 }
